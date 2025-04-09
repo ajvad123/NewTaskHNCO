@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Prevent horizontal scrolling */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+

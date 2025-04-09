@@ -1,20 +1,67 @@
-
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 768
+// Standard breakpoints for different device types
+const BREAKPOINTS = {
+  mobile: 768,      // Devices narrower than 768px are considered mobile
+  tablet: 1024,     // Devices narrower than 1024px are considered tablet
+  smallMobile: 480   // Very small mobile devices
+}
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState(undefined)
+// Improved mobile detection hook
+export function useDeviceType() {
+  const [deviceType, setDeviceType] = React.useState<{
+    isMobile: boolean
+    isTablet: boolean
+    isSmallMobile: boolean
+  }>(() => ({
+    isMobile: false,
+    isTablet: false,
+    isSmallMobile: false
+  }))
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    // Handle cases where window is not available (SSR)
+    if (typeof window === "undefined") return
+
+    const checkDeviceType = () => {
+      const width = window.innerWidth
+      const isMobile = width < BREAKPOINTS.mobile
+      const isTablet = width >= BREAKPOINTS.mobile && width < BREAKPOINTS.tablet
+      const isSmallMobile = width < BREAKPOINTS.smallMobile
+
+      setDeviceType({
+        isMobile,
+        isTablet,
+        isSmallMobile
+      })
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
+
+    // Initial check
+    checkDeviceType()
+
+    // Set up media query listeners for all breakpoints
+    const mobileMediaQuery = window.matchMedia(`(max-width: ${BREAKPOINTS.mobile - 1}px)`)
+    const tabletMediaQuery = window.matchMedia(`(min-width: ${BREAKPOINTS.mobile}px) and (max-width: ${BREAKPOINTS.tablet - 1}px)`)
+    const smallMobileMediaQuery = window.matchMedia(`(max-width: ${BREAKPOINTS.smallMobile - 1}px)`)
+
+    const handleChange = () => checkDeviceType()
+
+    mobileMediaQuery.addEventListener("change", handleChange)
+    tabletMediaQuery.addEventListener("change", handleChange)
+    smallMobileMediaQuery.addEventListener("change", handleChange)
+
+    return () => {
+      mobileMediaQuery.removeEventListener("change", handleChange)
+      tabletMediaQuery.removeEventListener("change", handleChange)
+      smallMobileMediaQuery.removeEventListener("change", handleChange)
+    }
   }, [])
 
-  return !!isMobile
+  return deviceType
+}
+
+// Backward compatible version if you just need mobile detection
+export function useIsMobile() {
+  const { isMobile } = useDeviceType()
+  return isMobile
 }

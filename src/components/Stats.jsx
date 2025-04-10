@@ -1,6 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Stats = () => {
+
+  const navigate=useNavigate()
+
+
+
+  const handleNavigate=()=>{
+    navigate('/travel')
+  }
+
   return (
     <section id="about" className="py-16 bg-light-gray">
       <div className="container mx-auto px-4">
@@ -38,6 +48,7 @@ const Stats = () => {
               className="bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors"
               data-aos="fade-up"
               data-aos-delay="400"
+              onClick={handleNavigate}
             >
               Know More
             </button>

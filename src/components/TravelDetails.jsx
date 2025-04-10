@@ -13,9 +13,9 @@ const TravelDetailsHeader = () => {
     const handleNavigate=()=>{
         navigate('/holiday')
     }
-     
+    
   return (
-    <div className="bg-white py-6">
+    <div id='boffer' className="bg-white py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb navigation */}
         <div className="flex items-center gap-2 text-sm mb-4">
@@ -129,7 +129,7 @@ const TravelDetailsHeader = () => {
 
 const FlightDetails = () => {
   return (
-    <div className="bg-white py-8 border-t">
+    <div id='flight' className="bg-white py-8 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
           <Plane className="text-blue-600" size={24} />
@@ -220,7 +220,7 @@ const FlightDetails = () => {
 
 const AccommodationDetails = () => {
   return (
-    <div className="bg-white py-8 border-t">
+    <div id='accomed' className="bg-white py-8 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
           <Hotel className="text-blue-600" size={24} />
@@ -395,7 +395,7 @@ const AccommodationDetails = () => {
 
 const PricingDetails = () => {
   return (
-    <div className="bg-white py-8 border-t">
+    <div id='booking' className="bg-white py-8 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
           <DollarSign className="text-blue-600" size={24} />

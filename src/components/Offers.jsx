@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const offers = [
   {
@@ -64,6 +65,10 @@ const OfferCard = ({ offer }) => {
 };
 
 const FlightOfferCard = ({ offer }) => {
+    const navigate=useNavigate()
+    const handleNavigate=()=>{
+      navigate('/travel')
+    }
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row h-full">
       <div className="md:w-1/3">
@@ -77,7 +82,7 @@ const FlightOfferCard = ({ offer }) => {
         <p className="text-sm text-gray-500 mb-1">{offer.category}</p>
         <h3 className="text-lg font-bold mb-2">{offer.title}</h3>
         <p className="text-sm text-gray-600 mb-4">{offer.description}</p>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+        <button onClick={handleNavigate} className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
           Book Now
         </button>
       </div>

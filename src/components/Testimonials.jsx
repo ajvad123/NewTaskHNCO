@@ -115,6 +115,7 @@ const Testimonials = () => {
 
   return (
     <section 
+    id="review"
       className="py-16 bg-light-gray"
       data-aos="fade-up"
       data-aos-duration="800"

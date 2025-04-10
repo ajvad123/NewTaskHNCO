@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, Clock, MapPin, Info } from 'lucide-react';
 
 const DayItem = ({ day, title, activities, isOpen, toggleOpen }) => {
   return (
-    <div className="border rounded-md mb-4 overflow-hidden">
+    <div id='itnry' className="border rounded-md mb-4 overflow-hidden">
       <div 
         className="flex items-center justify-between p-4 bg-white cursor-pointer"
         onClick={toggleOpen}

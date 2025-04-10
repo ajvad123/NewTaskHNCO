@@ -27,9 +27,9 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
-  const switchTravelPage=()=>{
+  const switchTravelPage = () => {
     navigate('/travel')
   }
 
@@ -51,11 +51,11 @@ const Navbar = () => {
             {location.pathname === "/travel" ? (
               <>
                 <a href="#" className="nav-link text-gray-800 hover:text-primary">Home</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Flight Details</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Accommodation</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Itinerary</a>
-                <a href="#offer" className="nav-link text-gray-800 hover:text-primary">Offers</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Booking</a>
+                <a href="#flight" className="nav-link text-gray-800 hover:text-primary">Flight Details</a>
+                <a href="#accomed" className="nav-link text-gray-800 hover:text-primary">Accommodation</a>
+                <a href="#itnry" className="nav-link text-gray-800 hover:text-primary">Itinerary</a>
+                <a href="#boffer" className="nav-link text-gray-800 hover:text-primary">Offers</a>
+                <a href="#booking" className="nav-link text-gray-800 hover:text-primary">Booking</a>
                 <a href="#contact" className="enquire-btn">Contact</a>
 
 
@@ -64,9 +64,8 @@ const Navbar = () => {
               <>
                 <a href="#" className="nav-link text-gray-800 hover:text-primary">Home</a>
                 <a href="#about" className="nav-link text-gray-800 hover:text-primary">About Us</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Holiday</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">Visa</a>
-                <a href="#" className="nav-link text-gray-800 hover:text-primary">City Tours</a>
+                <a href="#review" className="nav-link text-gray-800 hover:text-primary">Reviews</a>
+                <a href="#faq" className="nav-link text-gray-800 hover:text-primary">Faqs</a>
                 <a href="#offer" className="nav-link text-gray-800 hover:text-primary">Offers</a>
                 <a href="#blog" className="nav-link text-gray-800 hover:text-primary">Blogs</a>
                 <a href="#contact" className="enquire-btn">Contact</a>
@@ -121,7 +120,7 @@ const Navbar = () => {
                   Home
                 </a>
                 <a
-                  href="#"
+                  href="#flight"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
@@ -129,21 +128,21 @@ const Navbar = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="#accomed"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
                   Accommodation
                 </a>
                 <a
-                  href="#"
+                  href="#itnry"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
                   Itinerary
                 </a>
                 <a
-                  href="#offer"
+                  href="#boffer"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
@@ -174,26 +173,20 @@ const Navbar = () => {
                   About Us
                 </a>
                 <a
-                  href="#"
+                  href="#review"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
-                  Holiday
+                  Reviews
                 </a>
                 <a
-                  href="#"
+                  href="#faq"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-2 text-gray-800 hover:text-primary"
                 >
-                  Visa
+                  Faqs
                 </a>
-                <a
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-2 text-gray-800 hover:text-primary"
-                >
-                  City Tours
-                </a>
+
                 <a
                   href="#offer"
                   onClick={() => setMobileMenuOpen(false)}

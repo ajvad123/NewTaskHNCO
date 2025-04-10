@@ -41,10 +41,36 @@
   color: #888;
 }
 
-/* Prevent horizontal scrolling */
+/* Prevent horizontal scrolling at the root level */
 html, body {
   overflow-x: hidden;
   width: 100%;
-  position: relative;
 }
 
+/* Carousel specific fixes */
+.carousel-content {
+  display: flex;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+.carousel-item {
+  flex: 0 0 100%; /* Default to full width */
+}
+
+@media (min-width: 640px) {
+  .carousel-item {
+    flex: 0 0 50%; /* 2 items on sm screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-item {
+    flex: 0 0 33.333%; /* 3 items on md screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-item {
+    flex: 0 0 25%; /* 4 items on lg screens */
+  }
+}

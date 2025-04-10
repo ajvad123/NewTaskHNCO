@@ -30,7 +30,7 @@ const useDeviceType = () => {
 };
 
 const Hero = () => {
-  const { isMobile, isSmallMobile } = useDeviceType();
+  const { isMobile, isTablet, isSmallMobile } = useDeviceType();
   
   const services = [
     { 
@@ -104,6 +104,20 @@ const Hero = () => {
     "https://randomuser.me/api/portraits/women/45.jpg",
     "https://randomuser.me/api/portraits/men/67.jpg"
   ];
+
+  // Function to determine how many items to show based on screen size
+  const getVisibleDestinations = () => {
+    if (isMobile) {
+      // Only show the first destination on mobile
+      return destinations.slice(0, 1);
+    } else if (isTablet) {
+      // Show 2 destinations on tablet
+      return destinations.slice(0, 2);
+    } else {
+      // Show all destinations on desktop
+      return destinations;
+    }
+  };
 
   return (
     <section className="relative hero-section" style={{
@@ -245,7 +259,7 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Top Holiday Packages - Updated Carousel */}
+        {/* Top Holiday Packages - Mobile-first Carousel */}
         <div className="w-full mb-12 sm:mb-16 px-2 sm:px-4">
           <div 
             className="flex justify-between items-center mb-4 sm:mb-6"
@@ -269,40 +283,35 @@ const Hero = () => {
             )}
           </div>
           
-          <Carousel 
-            className="w-full"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <CarouselContent>
-              {destinations.map((destination, index) => (
-                <CarouselItem 
-                  key={destination.id} 
-                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 px-2"
-                  data-aos="zoom-in"
-                  data-aos-delay={500 + (index * 100)}
-                >
-                  <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64 group cursor-pointer">
-                    <img 
-                      src={destination.image} 
-                      alt={destination.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
-                      <h3 className="text-white text-lg sm:text-xl font-semibold">{destination.name}</h3>
+          {/* Mobile-optimized carousel */}
+          <div className="w-full overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {destinations.map((destination, index) => (
+                  <CarouselItem 
+                    key={destination.id} 
+                    className={isMobile ? "pl-2 basis-full" : isTablet ? "pl-2 basis-1/2" : "pl-4 basis-1/4"}
+                    data-aos="zoom-in"
+                    data-aos-delay={500 + (index * 100)}
+                  >
+                    <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64 group cursor-pointer">
+                      <img 
+                        src={destination.image} 
+                        alt={destination.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+                        <h3 className="text-white text-lg sm:text-xl font-semibold">{destination.name}</h3>
+                      </div>
                     </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {isMobile && (
-              <>
-                <CarouselPrevious className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
-                <CarouselNext className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
-              </>
-            )}
-          </Carousel>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
+              <CarouselNext className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
+            </Carousel>
+          </div>
         </div>
       </div>
       

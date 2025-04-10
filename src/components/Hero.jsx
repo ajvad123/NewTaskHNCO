@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './ui/carousel';
 import './HeroAnimation.css';
 
+import { useNavigate } from 'react-router-dom';
 const useDeviceType = () => {
   const [deviceType, setDeviceType] = useState({
     isMobile: false,
@@ -31,6 +32,8 @@ const useDeviceType = () => {
 
 const Hero = () => {
   const { isMobile, isTablet, isSmallMobile } = useDeviceType();
+  const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0);
   
   const services = [
     { 
@@ -105,18 +108,30 @@ const Hero = () => {
     "https://randomuser.me/api/portraits/men/67.jpg"
   ];
 
-  // Function to determine how many items to show based on screen size
   const getVisibleDestinations = () => {
     if (isMobile) {
-      // Only show the first destination on mobile
       return destinations.slice(0, 1);
     } else if (isTablet) {
-      // Show 2 destinations on tablet
       return destinations.slice(0, 2);
     } else {
-      // Show all destinations on desktop
       return destinations;
     }
+  };
+
+  const handleNavigation = () => {
+    navigate('/travel');
+  };
+  
+  const prev = () => {
+    setActiveIndex((prevIndex) => 
+      prevIndex === 0 ? destinations.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const next = () => {
+    setActiveIndex((prevIndex) => 
+      prevIndex === destinations.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
@@ -166,6 +181,7 @@ const Hero = () => {
             className="px-6 py-2 sm:px-8 sm:py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition-colors mb-8 sm:mb-12 hero-button pulse-animation text-sm sm:text-base"
             data-aos="fade-up"
             data-aos-delay="400"
+            onClick={handleNavigation}
           >
             Enquire
           </button>
@@ -253,13 +269,14 @@ const Hero = () => {
               className="bg-white text-blue-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium hover:bg-opacity-90 transition-all text-xs sm:text-sm col-span-1 sm:col-span-2 lg:col-span-1"
               data-aos="zoom-in"
               data-aos-delay="800"
+              onClick={handleNavigation}
             >
               Enquire
             </button>
           </div>
         </div>
         
-        {/* Top Holiday Packages - Mobile-first Carousel */}
+        {/* Top Holiday Packages - Updated with sliding mechanism */}
         <div className="w-full mb-12 sm:mb-16 px-2 sm:px-4">
           <div 
             className="flex justify-between items-center mb-4 sm:mb-6"
@@ -267,50 +284,74 @@ const Hero = () => {
             data-aos-delay="300"
           >
             <h2 className="text-xl sm:text-2xl font-bold text-white">Top Holiday Packages</h2>
-            {!isMobile && (
-              <div className="flex space-x-2">
-                <button className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            )}
+            <div className="hidden sm:flex space-x-2">
+              <button 
+                onClick={prev}
+                className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button 
+                onClick={next}
+                className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
           
-          {/* Mobile-optimized carousel */}
-          <div className="w-full overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-            <Carousel className="w-full">
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {destinations.map((destination, index) => (
-                  <CarouselItem 
-                    key={destination.id} 
-                    className={isMobile ? "pl-2 basis-full" : isTablet ? "pl-2 basis-1/2" : "pl-4 basis-1/4"}
-                    data-aos="zoom-in"
-                    data-aos-delay={500 + (index * 100)}
-                  >
-                    <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64 group cursor-pointer">
-                      <img 
-                        src={destination.image} 
-                        alt={destination.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
-                        <h3 className="text-white text-lg sm:text-xl font-semibold">{destination.name}</h3>
-                      </div>
+          <div className="relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+            <div
+              className="flex transition-all duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${activeIndex * 100}%)`,
+              }}
+            >
+              {destinations.map((destination, index) => (
+                <div
+                  key={destination.id}
+                  className="w-full sm:w-1/2 lg:w-1/4 min-w-full sm:min-w-[50%] lg:min-w-[25%] px-2 sm:px-4"
+                  data-aos="zoom-in"
+                  data-aos-delay={500 + (index * 100)}
+                >
+                  <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64 group cursor-pointer">
+                    <img
+                      src={destination.image}
+                      alt={destination.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+                      <h3 className="text-white text-lg sm:text-xl font-semibold">{destination.name}</h3>
                     </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
-              <CarouselNext className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white rounded-full z-10 w-8 h-8" />
-            </Carousel>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Mobile navigation buttons */}
+          <div className="flex justify-center mt-4 space-x-3 sm:hidden">
+            <button 
+              onClick={prev}
+              className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+            >
+              <svg className="h-4 w-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              onClick={next}
+              className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+            >
+              <svg className="h-4 w-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

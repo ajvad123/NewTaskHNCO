@@ -1,10 +1,12 @@
-
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import CitronLogo from "../assets/CitronLogo";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,11 +27,16 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const navigate=useNavigate()
+
+  const switchTravelPage=()=>{
+    navigate('/travel')
+  }
+
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
@@ -41,30 +48,30 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="nav-link text-gray-800 hover:text-primary">
-              Home
-            </a>
-            <a href="#about" className="nav-link text-gray-800 hover:text-primary">
-              About Us
-            </a>
-            <a href="#" className="nav-link text-gray-800 hover:text-primary">
-              Holiday
-            </a>
-            <a href="#" className="nav-link text-gray-800 hover:text-primary">
-              Visa
-            </a>
-            <a href="#" className="nav-link text-gray-800 hover:text-primary">
-              City Tours
-            </a>
-            <a href="#offer" className="nav-link text-gray-800 hover:text-primary">
-              Offers
-            </a>
-            <a href="#blog" className="nav-link text-gray-800 hover:text-primary">
-              Blogs
-            </a>
-            <a href="#contact" className="enquire-btn">
-              Contact
-            </a>
+            {location.pathname === "/travel" ? (
+              <>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Home</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Flight Details</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Accommodation</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Itinerary</a>
+                <a href="#offer" className="nav-link text-gray-800 hover:text-primary">Offers</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Booking</a>
+                <a href="#contact" className="enquire-btn">Contact</a>
+
+
+              </>
+            ) : (
+              <>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Home</a>
+                <a href="#about" className="nav-link text-gray-800 hover:text-primary">About Us</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Holiday</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">Visa</a>
+                <a href="#" className="nav-link text-gray-800 hover:text-primary">City Tours</a>
+                <a href="#offer" className="nav-link text-gray-800 hover:text-primary">Offers</a>
+                <a href="#blog" className="nav-link text-gray-800 hover:text-primary">Blogs</a>
+                <a href="#contact" className="enquire-btn">Contact</a>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -104,62 +111,112 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <div className="px-4 pt-2 pb-4 space-y-3">
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About Us
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Holiday
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Visa
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              City Tours
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Offers
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-800 hover:text-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blogs
-            </a>
-            <a
-              href="#"
-              className="inline-block enquire-btn"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contact
-            </a>
+            {location.pathname === "/travel" ? (
+              <>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Home
+                </a>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Flight Details
+                </a>
+
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Accommodation
+                </a>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Itinerary
+                </a>
+                <a
+                  href="#offer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Offers
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-block enquire-btn"
+                >
+                  Contact
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Home
+                </a>
+                <a
+                  href="#about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  About Us
+                </a>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Holiday
+                </a>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Visa
+                </a>
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  City Tours
+                </a>
+                <a
+                  href="#offer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Offers
+                </a>
+                <a
+                  href="#blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-gray-800 hover:text-primary"
+                >
+                  Blogs
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-block enquire-btn"
+                >
+                  Contact
+                </a>
+              </>
+            )}
           </div>
         </div>
       )}

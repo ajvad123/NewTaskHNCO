@@ -1,0 +1,120 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0071BC;
+  --secondary: #FFCC00;
+  --accent: #F5F5F5;
+  --text: #333333;
+  --light-gray: #F8F8F8;
+  --border-color: #E5E5E5;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #005d99;
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e6b800;
+}
+
+.accordion-item {
+  border: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background-color: var(--light-gray);
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.accordion-content {
+  padding: 1rem;
+  background-color: white;
+}
+
+.price-tag {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.price-discount {
+  font-weight: bold;
+  color: var(--text);
+  background-color: var(--secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.itinerary-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.itinerary-line {
+  width: 2px;
+  background-color: var(--primary);
+  margin-left: 5px;
+}
+
+.testimonial-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.star-rating {
+  color: var(--secondary);
+  font-size: 1.25rem;
+}

@@ -81,6 +81,11 @@
     @apply font-medium;
   }
 }
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 
 .font-inter {
   font-family: 'Inter', sans-serif;

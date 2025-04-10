@@ -34,47 +34,47 @@ const Hero = () => {
   const { isMobile, isTablet, isSmallMobile } = useDeviceType();
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const services = [
-    { 
-      name: 'Holiday', 
+    {
+      name: 'Holiday',
       icon: (
         <div className="bg-pink-500 rounded-full p-3 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
           <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
         </div>
-      ) 
+      )
     },
-    { 
-      name: 'Visa', 
+    {
+      name: 'Visa',
       icon: (
         <div className="bg-red-500 rounded-full p-3 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
           <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </div>
-      ) 
+      )
     },
-    { 
-      name: 'City Tours', 
+    {
+      name: 'City Tours',
       icon: (
         <div className="bg-blue-500 rounded-full p-3 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
           <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-      ) 
+      )
     },
-    { 
-      name: 'Offers', 
+    {
+      name: 'Offers',
       icon: (
         <div className="bg-yellow-500 rounded-full p-3 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
           <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-      ) 
+      )
     }
   ];
 
@@ -121,15 +121,15 @@ const Hero = () => {
   const handleNavigation = () => {
     navigate('/travel');
   };
-  
+
   const prev = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex === 0 ? destinations.length - 1 : prevIndex - 1
     );
   };
-  
+
   const next = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex === destinations.length - 1 ? 0 : prevIndex + 1
     );
   };
@@ -143,25 +143,25 @@ const Hero = () => {
     }}>
       <div className="container mx-auto px-4 sm:px-6 flex flex-col items-center justify-center h-full pt-16 sm:pt-24 lg:pt-32">
         <div className="text-center w-full max-w-4xl px-2 sm:px-0">
-          <h1 
+          <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 hero-title leading-tight"
             data-aos="fade-down"
             data-aos-duration="800"
           >
-            Discover the world with citron tours, 
+            Discover the world with citron tours,
             <br className="hidden sm:block" /> your journey begins here
           </h1>
-          
+
           {/* User Avatars */}
-          <div 
+          <div
             className="flex justify-center items-center space-x-2 my-6 sm:my-8 hero-avatars"
             data-aos="fade-up"
             data-aos-delay="200"
           >
             <div className="flex -space-x-2">
               {userAvatars.map((avatar, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden"
                   data-aos="zoom-in"
                   data-aos-delay={300 + (index * 100)}
@@ -177,7 +177,7 @@ const Hero = () => {
           </div>
 
           {/* Enquire Button */}
-          <button 
+          <button
             className="px-6 py-2 sm:px-8 sm:py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition-colors mb-8 sm:mb-12 hero-button pulse-animation text-sm sm:text-base"
             data-aos="fade-up"
             data-aos-delay="400"
@@ -187,14 +187,14 @@ const Hero = () => {
           </button>
 
           {/* Service Icons */}
-          <div 
+          <div
             className="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-4 sm:p-6 mb-8 sm:mb-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 hero-services"
             data-aos="fade-up"
             data-aos-delay="500"
           >
             {services.map((service, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex flex-col items-center text-white hero-service-item"
                 data-aos="zoom-in"
                 data-aos-delay={600 + (index * 100)}
@@ -206,7 +206,7 @@ const Hero = () => {
           </div>
 
           {/* Search Form */}
-          <div 
+          <div
             className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-3 sm:p-4 mb-12 sm:mb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3 hero-search"
             data-aos="fade-up"
             data-aos-delay="700"
@@ -223,7 +223,7 @@ const Hero = () => {
                 className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-3 bg-white bg-opacity-20 border-0 rounded-full text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 text-xs sm:text-sm"
               />
             </div>
-            
+
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="h-4 w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -237,7 +237,7 @@ const Hero = () => {
                 className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-3 bg-white bg-opacity-20 border-0 rounded-full text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 text-xs sm:text-sm"
               />
             </div>
-            
+
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="h-4 w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -251,7 +251,7 @@ const Hero = () => {
                 className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-3 bg-white bg-opacity-20 border-0 rounded-full text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 text-xs sm:text-sm"
               />
             </div>
-            
+
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="h-4 w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -264,8 +264,8 @@ const Hero = () => {
                 className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-3 bg-white bg-opacity-20 border-0 rounded-full text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 text-xs sm:text-sm"
               />
             </div>
-            
-            <button 
+
+            <button
               className="bg-white text-blue-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium hover:bg-opacity-90 transition-all text-xs sm:text-sm col-span-1 sm:col-span-2 lg:col-span-1"
               data-aos="zoom-in"
               data-aos-delay="800"
@@ -275,17 +275,17 @@ const Hero = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Top Holiday Packages - Updated with sliding mechanism */}
         <div className="w-full mb-12 sm:mb-16 px-2 sm:px-4">
-          <div 
+          <div
             className="flex justify-between items-center mb-4 sm:mb-6"
             data-aos="fade-up"
             data-aos-delay="300"
           >
             <h2 className="text-xl sm:text-2xl font-bold text-white">Top Holiday Packages</h2>
             <div className="hidden sm:flex space-x-2">
-              <button 
+              <button
                 onClick={prev}
                 className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors"
               >
@@ -293,7 +293,7 @@ const Hero = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={next}
                 className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-colors"
               >
@@ -303,7 +303,7 @@ const Hero = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
             <div
               className="flex transition-all duration-500 ease-in-out"
@@ -333,10 +333,10 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Mobile navigation buttons */}
           <div className="flex justify-center mt-4 space-x-3 sm:hidden">
-            <button 
+            <button
               onClick={prev}
               className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
             >
@@ -344,7 +344,7 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button 
+            <button
               onClick={next}
               className="bg-white bg-opacity-80 hover:bg-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
             >
@@ -355,15 +355,15 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Social Media Icons */}
-      <div 
+      <div
         className={`fixed ${isMobile ? 'bottom-4 right-4 flex-row' : 'right-4 top-1/2 transform -translate-y-1/2 flex-col'} gap-3 z-50 flex`}
         data-aos="fade-left"
         data-aos-delay="600"
       >
-        <a 
-          href="#" 
+        <a
+          href="tel:+919876543210"
           className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
           data-aos="zoom-in"
           data-aos-delay="700"
@@ -372,8 +372,11 @@ const Hero = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
         </a>
-        <a 
-          href="#" 
+
+        <a
+          href="https://wa.me/919876543210"
+          target="_blank"
+          rel="noopener noreferrer"
           className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:bg-green-600 transition-colors"
           data-aos="zoom-in"
           data-aos-delay="800"
@@ -383,6 +386,7 @@ const Hero = () => {
           </svg>
         </a>
       </div>
+
     </section>
   );
 };
